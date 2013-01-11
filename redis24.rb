@@ -1,6 +1,6 @@
 require 'formula'
 
-class Redis < Formula
+class Redis24 < Formula
   homepage 'http://redis.io/'
   url 'http://redis.googlecode.com/files/redis-2.4.17.tar.gz'
   sha1 '3d540531b3d7103a511d29661c2ae666dac60522'
