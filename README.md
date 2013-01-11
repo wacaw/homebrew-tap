@@ -3,7 +3,7 @@ Custom brew formulae for Datadog development.
 ### tap it
 
 ```
-$ brew tap Datadog/hairofthedog
+$ brew tap DataDog/hairofthedog
 ```
 
 ### clean up
