@@ -1,5 +1,6 @@
 require 'formula'
 
+# Borrowed from https://github.com/DataDog/homebrew-hairofthedog/blob/17735419d0428c855c1fd4807b15eeb3d5ab5663/redis24.rb
 class Redis24 < Formula
   homepage 'http://redis.io/'
   url 'https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/redis/redis-2.4.17.tar.gz'
