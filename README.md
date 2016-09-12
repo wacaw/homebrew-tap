@@ -1,19 +1,15 @@
-Custom brew formulae for Datadog development.
+Homebrew formulae for the software to use
 
-### tap it
+### Installation
 
-```
-$ brew tap DataDog/hairofthedog
-```
-
-### clean up
+To use these formulae, run
 
 ```
-$ brew uninstall redis cassandra
+$ brew tap SupportBee/homebrew-tap
 ```
 
-### install it
+And then, to install a software, say redis 2.4, run
 
 ```
-$ brew install redis24 cassandra10
+$ brew instal redis24
 ```
