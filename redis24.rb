@@ -2,8 +2,8 @@ require 'formula'
 
 class Redis24 < Formula
   homepage 'http://redis.io/'
-  url 'http://redis.googlecode.com/files/redis-2.4.17.tar.gz'
-  sha1 '3d540531b3d7103a511d29661c2ae666dac60522'
+  url 'https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/redis/redis-2.4.17.tar.gz'
+  sha256 '3fae7c47ef84886ff65073593c91586bb675babaf702eb6f3b37855ab3066ebd'
 
   fails_with :llvm do
     build 2334
