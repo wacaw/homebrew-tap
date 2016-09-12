@@ -5,13 +5,6 @@ class Redis24 < Formula
   url 'http://redis.googlecode.com/files/redis-2.4.17.tar.gz'
   sha1 '3d540531b3d7103a511d29661c2ae666dac60522'
 
-  head 'https://github.com/antirez/redis.git', :branch => 'unstable'
-
-  devel do
-    url  'http://redis.googlecode.com/files/redis-2.6.0-rc6.tar.gz'
-    sha1 '64a3567d7a9ff1e33b121084a2c5a22c070c0a44'
-  end
-
   fails_with :llvm do
     build 2334
     cause 'Fails with "reference out of range from _linenoise"'
