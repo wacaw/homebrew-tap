@@ -1,4 +1,4 @@
-Homebrew formulae for the software to use
+Homebrew formulae for the software we use
 
 ### Installation
 
