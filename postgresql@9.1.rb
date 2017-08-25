@@ -1,4 +1,4 @@
-class Postgresql91 < Formula
+class PostgresqlAT91 < Formula
   desc "Object-relational database system"
   homepage "http://www.postgresql.org/"
   url "http://ftp.postgresql.org/pub/source/v9.1.18/postgresql-9.1.18.tar.bz2"
