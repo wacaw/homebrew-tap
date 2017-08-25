@@ -11,5 +11,5 @@ $ brew tap SupportBee/homebrew-tap
 And then, to install a software, say redis 2.4, run
 
 ```
-$ brew install redis24
+$ brew install redis@2.4
 ```

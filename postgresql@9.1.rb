@@ -2,6 +2,7 @@ class Postgresql91 < Formula
   desc "Object-relational database system"
   homepage "http://www.postgresql.org/"
   url "http://ftp.postgresql.org/pub/source/v9.1.18/postgresql-9.1.18.tar.bz2"
+  version "9.1"
   sha256 "2726d526666904b454f87fe2ae54357c2ab9eb8aba299a4c904829b7598584a8"
 
   bottle do
