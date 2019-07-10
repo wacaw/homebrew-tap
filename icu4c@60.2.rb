@@ -18,7 +18,8 @@ class Icu4cAT602 < Formula
 
   def install
     args = %W[--prefix=#{prefix} --disable-samples --disable-tests --enable-static]
-    args << "--with-library-bits=64" if MacOS.prefer_64_bit?
+    # args << "--with-library-bits=64" if MacOS.prefer_64_bit?
+    args << "--with-library-bits=64"
 
     cd "source" do
       system "./configure", *args
