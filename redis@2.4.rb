@@ -14,7 +14,7 @@ class RedisAT24 < Formula
 
   def install
     # Architecture isn't detected correctly on 32bit Snow Leopard without help
-    ENV["OBJARCH"] = MacOS.prefer_64_bit? ? "-arch x86_64" : "-arch i386"
+    ENV["OBJARCH"] = Hardware::CPU.is_64_bit? ? "-arch x86_64" : "-arch i386"
 
     # Head and stable have different code layouts
     src = (buildpath/'src/Makefile').exist? ? buildpath/'src' : buildpath
@@ -34,23 +34,23 @@ class RedisAT24 < Formula
   end
 
   def caveats
-    <<-EOS.undent
-    If this is your first install, automatically load on login with:
-        mkdir -p ~/Library/LaunchAgents
-        cp #{plist_path} ~/Library/LaunchAgents/
-        launchctl load -w ~/Library/LaunchAgents/#{plist_path.basename}
+    <<-EOS
+If this is your first install, automatically load on login with:
+    mkdir -p ~/Library/LaunchAgents
+    cp #{plist_path} ~/Library/LaunchAgents/
+    launchctl load -w ~/Library/LaunchAgents/#{plist_path.basename}
 
-    If this is an upgrade and you already have the #{plist_path.basename} loaded:
-        launchctl unload -w ~/Library/LaunchAgents/#{plist_path.basename}
-        cp #{plist_path} ~/Library/LaunchAgents/
-        launchctl load -w ~/Library/LaunchAgents/#{plist_path.basename}
+If this is an upgrade and you already have the #{plist_path.basename} loaded:
+    launchctl unload -w ~/Library/LaunchAgents/#{plist_path.basename}
+    cp #{plist_path} ~/Library/LaunchAgents/
+    launchctl load -w ~/Library/LaunchAgents/#{plist_path.basename}
 
-      To start redis manually:
-        redis-server #{etc}/redis.conf
+  To start redis manually:
+    redis-server #{etc}/redis.conf
 
-      To access the server:
-        redis-cli
-    EOS
+  To access the server:
+    redis-cli
+EOS
   end
 
   def startup_plist

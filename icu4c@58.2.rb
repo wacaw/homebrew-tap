@@ -23,8 +23,7 @@ class Icu4cAT582 < Formula
     ENV.cxx11 if build.cxx11?
 
     args = %W[--prefix=#{prefix} --disable-samples --disable-tests --enable-static]
-    # args << "--with-library-bits=64" if MacOS.prefer_64_bit?
-    args << "--with-library-bits=64"
+    args << "--with-library-bits=64" if Hardware::CPU.is_64_bit?
 
     cd "source" do
       system "./configure", *args

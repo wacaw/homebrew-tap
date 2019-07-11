@@ -68,7 +68,7 @@ class PostgresqlAT91 < Formula
       ENV.append "LIBS", `uuid-config --libs`.strip
     end
 
-    if !build.build_32_bit? && MacOS.prefer_64_bit? && build.with?("python")
+    if !build.build_32_bit? && Hardware::CPU.is_64_bit? && build.with?("python")
       args << "ARCHFLAGS='-arch x86_64'"
       check_python_arch
     end
@@ -136,7 +136,7 @@ class PostgresqlAT91 < Formula
         http://www.postgresql.org/docs/current/static/kernel-resources.html#SYSVIPC
     EOS
 
-    if MacOS.prefer_64_bit?
+    if Hardware::CPU.is_64_bit?
       s << "\n" << <<-EOS.undent
         When installing the postgres gem, including ARCHFLAGS is recommended:
           ARCHFLAGS="-arch x86_64" gem install pg
