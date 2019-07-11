@@ -1,4 +1,4 @@
-class PostgresqlAT10 < Formula
+class PostgresqlAT105 < Formula
   desc "Object-relational database system"
   homepage "https://www.postgresql.org/"
   url "https://ftp.postgresql.org/pub/source/v10.5/postgresql-10.5.tar.bz2"
