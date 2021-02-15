@@ -11,10 +11,10 @@ class ElasticsearchAT24 < Formula
   version "2.4"
   sha256 "23a369ef42955c19aaaf9e34891eea3a055ed217d7fbe76da0998a7a54bbe167"
 
-  devel do
-    url "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0-beta1.tar.gz"
-    sha256 "4ff6680b2d053c74835db77dcb03e02340555cd70cae8bb73d3b1f94ddf0147d"
-  end
+  # devel do
+  #   url "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0-beta1.tar.gz"
+  #   sha256 "4ff6680b2d053c74835db77dcb03e02340555cd70cae8bb73d3b1f94ddf0147d"
+  # end
 
   head do
     url "https://github.com/elasticsearch/elasticsearch.git"
