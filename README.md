@@ -1,6 +1,6 @@
 Homebrew formulae for the software we use
 
-### Installation
+## Installation
 
 To use these formulae, run
 
