@@ -18,13 +18,15 @@ class ElasticsearchAT24 < Formula
 
   head do
     url "https://github.com/elasticsearch/elasticsearch.git"
-    depends_on :java => "1.8"
+    # depends_on :java => "1.8"
+    depends_on "openjdk"
     depends_on "gradle" => :build
   end
 
   bottle :unneeded
 
-  depends_on :java => "1.7+"
+  # depends_on :java => "1.7+"
+  depends_on "openjdk"
 
   def cluster_name
     "elasticsearch_#{ENV["USER"]}"
@@ -59,14 +61,16 @@ class ElasticsearchAT24 < Formula
 
     inreplace "#{libexec}/bin/elasticsearch.in.sh" do |s|
       # Configure ES_HOME
-      if build.devel? || build.head?
+      # if build.devel? || build.head?
+      if build.head?
         s.sub!(%r{#\!/bin/bash\n}, "#!/bin/bash\n\nES_HOME=#{libexec}")
       else
         s.sub!(%r{#\!/bin/sh\n}, "#!/bin/sh\n\nES_HOME=#{libexec}")
       end
     end
 
-    plugin=(build.devel? || build.head?) ? "#{libexec}/bin/elasticsearch-plugin" : "#{libexec}/bin/plugin"
+    # plugin=(build.devel? || build.head?) ? "#{libexec}/bin/elasticsearch-plugin" : "#{libexec}/bin/plugin"
+    plugin=(build.head?) ? "#{libexec}/bin/elasticsearch-plugin" : "#{libexec}/bin/plugin"
     inreplace plugin do |s|
       # Add the proper ES_CLASSPATH configuration
       s.sub!(/SCRIPT="\$0"/, %(SCRIPT="$0"\nES_CLASSPATH=#{libexec}/lib))
@@ -80,7 +84,8 @@ class ElasticsearchAT24 < Formula
     (libexec/"config").rmtree
 
     bin.write_exec_script Dir[libexec/"bin/elasticsearch"]
-    if build.devel? || build.head?
+    # if build.devel? || build.head?
+    if build.head?
       bin.write_exec_script Dir[libexec/"bin/elasticsearch-plugin"]
     end
   end
@@ -94,7 +99,7 @@ class ElasticsearchAT24 < Formula
   end
 
   def caveats
-    s = <<-EOS.undent
+    s = <<~EOS
       Data:    #{var}/elasticsearch/#{cluster_name}/
       Logs:    #{var}/log/elasticsearch/#{cluster_name}.log
       Plugins: #{libexec}/plugins/
@@ -102,7 +107,7 @@ class ElasticsearchAT24 < Formula
     EOS
 
     if stable?
-      s += <<-EOS.undent
+      s += <<~EOS
         plugin script: #{libexec}/bin/plugin
       EOS
     end
@@ -112,7 +117,7 @@ class ElasticsearchAT24 < Formula
 
   plist_options :manual => "elasticsearch"
 
-  def plist; <<-EOS.undent
+  def plist; <<~EOS
       <?xml version="1.0" encoding="UTF-8"?>
       <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
       <plist version="1.0">
@@ -142,14 +147,16 @@ class ElasticsearchAT24 < Formula
   end
 
   test do
-    if devel? || head?
+    # if devel? || head?
+    if head?
       system "#{libexec}/bin/elasticsearch-plugin", "list"
     else
       system "#{libexec}/bin/plugin", "list"
     end
     pid = "#{testpath}/pid"
     begin
-      if devel? || head?
+      # if devel? || head?
+      if head?
         system "#{bin}/elasticsearch", "-d", "-p", pid, "-Epath.data=#{testpath}/data"
       else
         system "#{bin}/elasticsearch", "-d", "-p", pid, "--path.data", testpath/"data"
